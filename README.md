@@ -5,7 +5,6 @@ A multi-page Flask website for a diploma project, including:
 - Home (title page)
 - Quick Test (6-feature prediction)
 - Research Results (placeholders for your images/metrics)
-- How it works
 - About
 - Full version
 
