@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}How it works · CVD Risk ML{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-bold mb-3">How it works</h1>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <ol class="mb-0 text-muted">
+      <li>User inputs 6 parameters (Age, Height, Weight, Activity, Smoking, Family history). BMI is derived from height & weight if the model expects it.</li>
+      <li>Server validates numeric ranges and categorical options.</li>
+      <li>CatBoost model generates a risk class (and probabilities if available).</li>
+      <li>Website displays the result and interpretation with disclaimers.</li>
+    </ol>
+  </div>
+</div>
+{% endblock %}

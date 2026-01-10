@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Research results | CVD Risk Prediction{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h1 class="h3 fw-bold mb-2">Research results</h1>
+  <p class="text-muted mb-0">
+    This page summarizes the experimental findings for multiclass CVD risk prediction. The
+    model assigns three class labels: HIGH, INTERMEDIARY (Medium), and LOW.
+  </p>
+</div>
+
+<div class="row g-3">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">Dataset overview</h2>
+        <p class="mb-0">
+          The study frames CVD risk as a three-class classification problem. The quick test
+          uses six user inputs and a derived BMI value, aligning a compact questionnaire with
+          the core predictive signals used by the full model.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">Class distribution</h2>
+        <img class="img-fluid rounded border" src="{{ url_for('static', filename='img/class_distribution.png') }}"
+          alt="Class distribution across HIGH, INTERMEDIARY, and LOW classes">
+        <p class="small text-muted mt-2 mb-0">
+          The class distribution shows imbalance across the three labels; this motivates class
+          balancing strategies and the use of macro-averaged metrics to avoid dominance by the
+          majority class.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">Exploratory data analysis (EDA)</h2>
+        <img class="img-fluid rounded border" src="{{ url_for('static', filename='img/correlation_heatmap.png') }}"
+          alt="Correlation heatmap of numeric variables">
+        <p class="small text-muted mt-2 mb-0">
+          The correlation heatmap highlights expected relationships such as BMI with weight and
+          height. Correlated variables are common in tabular medical data and should be
+          interpreted carefully during modeling.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">Model performance</h2>
+        <img class="img-fluid rounded border"
+          src="{{ url_for('static', filename='img/confusion_matrix_catboost.png') }}"
+          alt="Confusion matrix for the CatBoost multiclass model">
+        <p class="small text-muted mt-2 mb-3">
+          The confusion matrix indicates typical errors between adjacent risk categories,
+          particularly INTERMEDIARY versus HIGH or LOW, which is expected in a three-class
+          clinical risk setting.
+        </p>
+        <div class="small">
+          <div class="fw-semibold mb-1">Key metrics</div>
+          <ul class="mb-0">
+            <li>Accuracy: 0.55</li>
+            <li>Macro-F1: 0.49</li>
+            <li>Weighted-F1: 0.56</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">Feature importance</h2>
+        <img class="img-fluid rounded border" src="{{ url_for('static', filename='img/top15_importance.png') }}"
+          alt="Top 15 feature importances for the trained model">
+        <p class="small text-muted mt-2 mb-0">
+          The top-ranked features explain most of the model signal, supporting the quick-test
+          design that focuses on a compact set of high-impact inputs.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="h6 fw-bold">Limitations</h2>
+        <ul class="mb-0">
+          <li>Educational demonstration only; not a diagnostic tool.</li>
+          <li>Quick test uses a limited feature set compared to full clinical assessments.</li>
+          <li>Performance depends on data quality and representativeness.</li>
+          <li>Class imbalance can affect minority-class recall.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

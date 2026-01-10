@@ -1,0 +1,13 @@
+html, body { height: 100%; }
+body {
+  background: #fbfbfd;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; }
+footer { margin-top: auto; }
+.card { border: 1px solid rgba(0,0,0,.06); }
+.navbar-brand { letter-spacing: 0.2px; }
+.progress { background: rgba(0,0,0,.06); }
+code { background: rgba(0,0,0,.05); padding: 0.1rem 0.25rem; border-radius: 0.25rem; }

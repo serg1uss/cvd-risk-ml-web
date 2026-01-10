@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Home · CVD Risk ML{% endblock %}
+
+{% block content %}
+<div class="row align-items-center g-4">
+  <div class="col-lg-7">
+    <h1 class="display-5 fw-bold">Early detection of cardiovascular disease risk using Machine Learning</h1>
+    <p class="lead text-muted mt-3">
+      This web application demonstrates a machine-learning model that estimates CVD risk level based on quantitative inputs.
+      Use the quick test for a fast assessment or explore research results and methodology.
+    </p>
+
+    <div class="d-flex gap-2 mt-4">
+      <a class="btn btn-primary btn-lg" href="{{ url_for('main.quick_test') }}">Start quick test</a>
+      <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('main.research') }}">View research results</a>
+    </div>
+
+    <div class="alert alert-warning mt-4">
+      <strong>Disclaimer:</strong> This tool is not a medical diagnosis. If you have concerns, consult a qualified healthcare professional.
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold">Quick test uses 6 inputs</h5>
+        <ul class="mb-0 text-muted">
+          <li>Age</li>
+          <li>Height (cm)</li>
+          <li>Weight (kg)</li>
+          <li>Physical activity level</li>
+          <li>Smoking status (Y/N)</li>
+          <li>Family history of CVD (Y/N)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mt-3">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold">Outputs</h5>
+        <ul class="mb-0 text-muted">
+          <li>Risk level (Low / Medium / High)</li>
+          <li>Class probabilities (if available)</li>
+          <li>Interpretation guidance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

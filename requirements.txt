@@ -1,0 +1,5 @@
+Flask==3.0.3
+catboost==1.2.5
+pandas==2.2.2
+numpy==1.26.4
+gunicorn==22.0.0

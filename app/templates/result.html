@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Result · CVD Risk ML{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <h1 class="h3 fw-bold mb-0">Prediction result</h1>
+      <a class="btn btn-outline-primary" href="{{ url_for('main.quick_test') }}">New test</a>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <div>
+            <div class="text-muted">Predicted risk level</div>
+            {% set cls = result.pred_class_name %}
+            <div class="display-6 fw-bold">
+              <span
+                class="badge rounded-pill {% if cls|upper == 'LOW' %} bg-success {% elif cls|upper in ['MEDIUM', 'INTERMEDIARY'] %} bg-warning text-dark {% elif cls|upper == 'HIGH' %} bg-danger {% endif %}">
+                {{ cls }}
+              </span>
+            </div>
+            {% if result.pred_confidence is not none %}
+            <div class="text-muted mt-1">Confidence: {{ (result.pred_confidence*100)|round(1) }}%</div>
+            {% endif %}
+          </div>
+
+          <div class="text-end">
+            <div class="text-muted">Estimated BMI</div>
+            {% if bmi %}
+            <div class="fs-3 fw-semibold">{{ bmi|round(1) }}</div>
+            {% else %}
+            <div class="fs-3 fw-semibold">—</div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if result.proba %}
+        <hr>
+        <div class="text-muted mb-2">Class probabilities</div>
+        {% for item in result.proba %}
+        <div class="mb-2">
+          <div class="d-flex justify-content-between">
+            <div class="fw-semibold">{{ item.class }}</div>
+            <div class="text-muted">{{ (item.p*100)|round(1) }}%</div>
+          </div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar" role="progressbar" style="width: {{ (item.p*100)|round(1) }}%"></div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if recommendations %}
+    <div class="card shadow-sm mt-3 border-start border-3 border-{{ recommendations.accent }}">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+          <h2 class="h5 fw-bold mb-0">Personalized recommendations</h2>
+          <span class="badge bg-{{ recommendations.accent }} {% if recommendations.accent == 'warning' %}text-dark{% endif %}">
+            {{ recommendations.risk_label }}
+          </span>
+        </div>
+        <p class="text-muted mt-2 mb-3">{{ recommendations.headline }}</p>
+        <ul class="mb-0">
+          {% for item in recommendations["items"] %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="alert alert-warning mt-3">
+      <strong>Disclaimer:</strong> Educational/research tool only. Not medical advice.
+    </div>
+  </div>
+</div>
+{% endblock %}
