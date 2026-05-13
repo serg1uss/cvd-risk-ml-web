@@ -206,6 +206,11 @@ def predict():
     return render_template("result.html", input_data=clean, bmi=bmi, result=result, recommendations=recommendations)
 
 
+@bp.get("/history")
+def history():
+    return render_template("history.html")
+
+
 @bp.get("/research")
 def research():
     return render_template("research.html")

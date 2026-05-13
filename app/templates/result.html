@@ -4,9 +4,24 @@
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-lg-9">
+    <div id="history-source"
+         data-age="{{ input_data['Age'] }}"
+         data-height="{{ input_data['Height (cm)'] }}"
+         data-weight="{{ input_data['Weight (kg)'] }}"
+         data-activity="{{ input_data['Physical Activity Level'] }}"
+         data-smoking="{{ input_data['Smoking Status'] }}"
+         data-family="{{ input_data['Family History of CVD'] }}"
+         data-bmi="{{ '%.4f'|format(bmi) if bmi is not none else '' }}"
+         data-risk-class="{{ result.pred_class_name }}"
+         data-confidence="{{ result.pred_confidence if result.pred_confidence is not none else '' }}"
+         hidden></div>
+
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
       <h1 class="h3 fw-bold mb-0">Prediction result</h1>
-      <a class="btn btn-outline-primary" href="{{ url_for('main.quick_test') }}">New test</a>
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-secondary" href="{{ url_for('main.history') }}">View history</a>
+        <a class="btn btn-outline-primary" href="{{ url_for('main.quick_test') }}">New test</a>
+      </div>
     </div>
 
     <div class="card shadow-sm mb-3">

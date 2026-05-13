@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}History · CVD Risk ML{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-11">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <h1 class="h3 fw-bold mb-0">Test history</h1>
+      <div class="d-flex gap-2">
+        <a class="btn btn-outline-primary" href="{{ url_for('main.quick_test') }}">New test</a>
+        <button id="history-clear" type="button" class="btn btn-outline-danger" disabled>Clear history</button>
+      </div>
+    </div>
+
+    <div id="history-root">
+      <div id="history-unavailable" class="alert alert-info d-none">
+        History is unavailable in this browser session (storage disabled or private browsing mode).
+      </div>
+
+      <div id="history-empty" class="text-center text-muted py-5 d-none">
+        <p class="mb-2">No history yet.</p>
+        <a class="btn btn-primary" href="{{ url_for('main.quick_test') }}">Take a test</a>
+      </div>
+
+      <div id="history-chart-wrap" class="card shadow-sm mb-3 d-none">
+        <div class="card-body">
+          <div class="text-muted small mb-2">BMI and risk level over time</div>
+          <div style="position: relative; height: 280px;">
+            <canvas id="history-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div id="history-table" class="card shadow-sm d-none"></div>
+    </div>
+
+    <div class="alert alert-warning mt-3 small mb-0">
+      History is stored locally in this browser only. It will not sync across devices and may be cleared by your browser settings.
+    </div>
+  </div>
+</div>
+{% endblock %}
