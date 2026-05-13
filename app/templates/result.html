@@ -63,12 +63,7 @@
             {{ recommendations.risk_label }}
           </span>
         </div>
-        <p class="text-muted mt-2 mb-3">{{ recommendations.headline }}</p>
-        <ul class="mb-0">
-          {% for item in recommendations["items"] %}
-          <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
+        <p class="mb-0 mt-2">{{ recommendations.sentence }}</p>
       </div>
     </div>
     {% endif %}
