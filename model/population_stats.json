@@ -1,0 +1,11 @@
+{
+  "_note": "Placeholder values - regenerate with scripts/build_population_stats.py <train.csv> for real distributions.",
+  "by_age_band": {
+    "20-29": {"LOW": 0.82, "INTERMEDIARY": 0.15, "HIGH": 0.03},
+    "30-39": {"LOW": 0.66, "INTERMEDIARY": 0.25, "HIGH": 0.09},
+    "40-49": {"LOW": 0.45, "INTERMEDIARY": 0.34, "HIGH": 0.21},
+    "50-59": {"LOW": 0.27, "INTERMEDIARY": 0.38, "HIGH": 0.35},
+    "60+":   {"LOW": 0.14, "INTERMEDIARY": 0.34, "HIGH": 0.52}
+  },
+  "overall": {"LOW": 0.46, "INTERMEDIARY": 0.30, "HIGH": 0.24}
+}

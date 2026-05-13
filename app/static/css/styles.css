@@ -11,3 +11,15 @@ footer { margin-top: auto; }
 .navbar-brand { letter-spacing: 0.2px; }
 .progress { background: rgba(0,0,0,.06); }
 code { background: rgba(0,0,0,.05); padding: 0.1rem 0.25rem; border-radius: 0.25rem; }
+
+@media print {
+  .navbar, footer, #whatif-card { display: none !important; }
+  .d-print-none { display: none !important; }
+  body { background: #fff !important; font-size: 11pt; }
+  main { padding-top: 0 !important; }
+  .card { border: 1px solid #ccc !important; box-shadow: none !important; page-break-inside: avoid; break-inside: avoid; }
+  .badge { border: 1px solid #555 !important; color: #000 !important; background: transparent !important; }
+  .progress { border: 1px solid #ddd; }
+  .progress-bar { background-color: #888 !important; color: #000; }
+  a[href]::after { content: ""; }
+}
